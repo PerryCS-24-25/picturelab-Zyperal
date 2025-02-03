@@ -11,11 +11,11 @@ public class PictureTester {
      * Method to test the PictureExplorer
      */
     public static void testExplorer() {
-        Picture beach = new Picture("beach.jpg");
-        beach.explore();
-        Picture cP = new Picture("cyberpunk,jpeg");
-        Picture smallcP = cP.scale(0.50,0.50);
-        smallcP.write("cyberpunk.jpeg");   
+        //Picture beach = new Picture("beach.jpg");
+        //beach.explore();
+        Picture cC = new Picture("cyberchina,jpg");
+        Picture smallcC = cC.scale(0.50,0.50);
+        smallcC.write("cyberchina.jpg");   
     }
 
     /**
