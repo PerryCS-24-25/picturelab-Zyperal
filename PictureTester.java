@@ -13,10 +13,10 @@ public class PictureTester {
     public static void testExplorer() {
         //Picture beach = new Picture("beach.jpg");
         //beach.explore();
-        Picture cC = new Picture("cyberchina.jpg");
-        Picture smallcC = cC.scale(0.50,0.50);
-        smallcC.write("cyberchina.jpg");
-        cC.explore();   
+        Picture street = new Picture("streets.jpg");
+        Picture smallStreet = street.scale(0.50,0.50);
+        smallStreet.write("streets.jpg");
+        street.explore();   
     }
 
     /**
