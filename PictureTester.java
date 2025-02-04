@@ -109,9 +109,9 @@ public class PictureTester {
         //testExplorer();
         //testScale();
         //testZeroBlue();
-        testKeepOnlyBlue();
-        testKeepOnlyRed();
-        testKeepOnlyGreen();
+        //testKeepOnlyBlue();
+        //testKeepOnlyRed();
+        //testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
         //testFixUnderwater();
