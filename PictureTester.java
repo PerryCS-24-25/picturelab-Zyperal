@@ -69,6 +69,36 @@ public class PictureTester {
     }
 
     /**
+     * Method to test keepOnlyBlue
+     */
+    public static void testKeepOnlyBlue() {
+        Picture cC = new Picture("cyberchina.jpg");
+        cC.explore();
+        cC.keepOnlyBlue();
+        cC.explore();
+    }
+
+    /**
+     * Method to test keepOnlyBlue
+     */
+    public static void testKeepOnlyRed() {
+        Picture mccp = new Picture("McCp.jpg");
+        mccp.explore();
+        mccp.keepOnlyRed();
+        mccp.explore();
+    }
+
+    /**
+     * Method to test keepOnlyBlue
+     */
+    public static void testKeepOnlyGreen() {
+        Picture sP = new Picture("solarpunk.jpg");
+        sP.explore();
+        sP.keepOnlyGreen();
+        sP.explore();
+    }
+
+    /**
      * Main method for testing. Every class can have a main method in Java
      */
     public static void main(String[] args) {
@@ -76,12 +106,12 @@ public class PictureTester {
         // and comment out the ones you don't want
         // to run
 
-        testExplorer();
+        //testExplorer();
         //testScale();
         //testZeroBlue();
-        //testKeepOnlyBlue();
-        //testKeepOnlyRed();
-        //testKeepOnlyGreen();
+        testKeepOnlyBlue();
+        testKeepOnlyRed();
+        testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
         //testFixUnderwater();

@@ -1,6 +1,6 @@
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 
 /**
  * A class that represents a picture. This class inherits from SimplePicture and
@@ -130,14 +130,63 @@ public class Picture extends SimplePicture {
      * Removes all the red from this image.
      */
     public void zeroRed() {
-        //TODO: Write this method.
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels) {
+            for (Pixel pixelObj : rowArray) {
+                pixelObj.setRed(0);
+            }
+        }
     }
 
     /**
      * Removes all the green from this image.
      */
     public void zeroGreen() {
-        //TODO: Write this method.   
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels) {
+            for (Pixel pixelObj : rowArray) {
+                pixelObj.setGreen(0);
+            }
+        }   
+    }
+
+    /**
+     * keeps all the blue from this image.
+     */
+    public void keepOnlyBlue() {
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels) {
+            for (Pixel pixelObj : rowArray) {
+                pixelObj.setGreen(0);
+                pixelObj.setRed(0);
+            }
+        }   
+    }
+
+    /**
+     * keeps all the blue from this image.
+     */
+    public void keepOnlyRed() {
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels) {
+            for (Pixel pixelObj : rowArray) {
+                pixelObj.setBlue(0);
+                pixelObj.setGreen(0);
+            }
+        }   
+    }
+
+/**
+     * keeps all the blue from this image.
+     */
+    public void keepOnlyGreen() {
+        Pixel[][] pixels = this.getPixels2D();
+        for (Pixel[] rowArray : pixels) {
+            for (Pixel pixelObj : rowArray) {
+                pixelObj.setBlue(0);
+                pixelObj.setRed(0);
+            }
+        }   
     }
 
     /**
