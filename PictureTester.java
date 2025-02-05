@@ -104,7 +104,8 @@ public class PictureTester {
     public static void testFixUnderwater() {
         Picture water = new Picture("water.jpg");
         water.explore();
-        
+        water.FixUnderwater();
+        water.explore();
     }
 
     /**
@@ -117,6 +118,16 @@ public class PictureTester {
         g.explore();
     }
     
+/**
+     * Method to test negate
+     */
+    public static void testGrayscale() {
+        Picture sg = new Picture("seagull.jpg");
+        sg.explore();
+        sg.grayscale();
+        sg.explore();
+    }
+
     /**
      * Main method for testing. Every class can have a main method in Java
      */
@@ -131,8 +142,8 @@ public class PictureTester {
         //testKeepOnlyBlue();
         //testKeepOnlyRed();
         //testKeepOnlyGreen();
-        testNegate();
-        //testGrayscale();
+        //testNegate();
+        testGrayscale();
         //testFixUnderwater();
         //testMirrorVertical();
         //testMirrorTemple();
