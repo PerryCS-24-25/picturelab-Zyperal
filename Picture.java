@@ -190,15 +190,15 @@ public class Picture extends SimplePicture {
     }
 
     /**
-     * keeps all the green from this image.
+     * negates every pixel in this image.
      */
     public void negate() {
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels) {
             for (Pixel pixelObj : rowArray) {
-                pixelObj.getBlue();
-                pixelObj.getRed();
-                pixelObj.getGreen();
+                pixelObj.setBlue(255-pixelObj.getBlue());
+                pixelObj.setRed(255-pixelObj.getRed());
+                pixelObj.setGreen(255-pixelObj.getGreen());
             }
         }   
     }

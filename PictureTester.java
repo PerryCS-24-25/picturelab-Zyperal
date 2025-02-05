@@ -79,7 +79,7 @@ public class PictureTester {
     }
 
     /**
-     * Method to test keepOnlyBlue
+     * Method to test keepOnlyRed
      */
     public static void testKeepOnlyRed() {
         Picture mccp = new Picture("McCp.jpg");
@@ -89,7 +89,7 @@ public class PictureTester {
     }
 
     /**
-     * Method to test keepOnlyBlue
+     * Method to test keepOnlyGreen
      */
     public static void testKeepOnlyGreen() {
         Picture sP = new Picture("solarpunk.jpg");
@@ -98,6 +98,25 @@ public class PictureTester {
         sP.explore();
     }
 
+    /**
+     * Method to test FixUnderwater
+     */
+    public static void testFixUnderwater() {
+        Picture water = new Picture("water.jpg");
+        water.explore();
+        
+    }
+
+    /**
+     * Method to test negate
+     */
+    public static void testNegate() {
+        Picture g = new Picture("gorge.jpg");
+        g.explore();
+        g.negate();
+        g.explore();
+    }
+    
     /**
      * Main method for testing. Every class can have a main method in Java
      */
@@ -112,7 +131,7 @@ public class PictureTester {
         //testKeepOnlyBlue();
         //testKeepOnlyRed();
         //testKeepOnlyGreen();
-        //testNegate();
+        testNegate();
         //testGrayscale();
         //testFixUnderwater();
         //testMirrorVertical();
