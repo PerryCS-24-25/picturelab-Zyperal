@@ -104,7 +104,7 @@ public class PictureTester {
     public static void testFixUnderwater() {
         Picture water = new Picture("water.jpg");
         water.explore();
-        water.FixUnderwater();
+        water.fixUnderwater();
         water.explore();
     }
 

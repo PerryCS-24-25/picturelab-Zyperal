@@ -206,7 +206,8 @@ public class Picture extends SimplePicture {
     /**
      * makes the image more "natural"
      */
-    public void FixUnderwater() {
+    public void fixUnderwater() {
+        //TODO:use 2 for each loops to find min and maxes b4 modding the image
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels) {
             for (Pixel pixelObj : rowArray) {
@@ -218,7 +219,7 @@ public class Picture extends SimplePicture {
     }
 
     /**
-     * makes the image more "natural"
+     * makes the image grayscale / "vintage" ig
      */
     public void grayscale() {
         Pixel[][] pixels = this.getPixels2D();
