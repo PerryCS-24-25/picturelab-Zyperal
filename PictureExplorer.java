@@ -107,6 +107,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     /**
      * zoom menu
      */
+    private JMenu fileMenu;
+    /**
+     * file menu
+     */
     private JMenu zoomMenu;
     /**
      * 25% zoom level
@@ -137,6 +141,18 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
      */
     private JMenuItem fiveHundred;
 
+    private JMenuItem open;
+    /**
+     * 500% zoom level
+     */
+    private JMenuItem close;
+    /**
+     * 500% zoom level
+     */
+    private JMenuItem save;
+    /**
+     * 500% zoom level
+     */
     /**
      * The picture being explored
      */
@@ -224,6 +240,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     private void setUpMenuBar() {
         //create menu
         menuBar = new JMenuBar();
+        fileMenu = new JMenu("File");
         zoomMenu = new JMenu("Zoom");
         twentyFive = new JMenuItem("25%");
         fifty = new JMenuItem("50%");
@@ -233,6 +250,9 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         hundredFifty = new JMenuItem("150%");
         twoHundred = new JMenuItem("200%");
         fiveHundred = new JMenuItem("500%");
+        open = new JMenuItem("Open");
+        close = new JMenuItem("Close");
+        save = new JMenuItem("Save");
 
         // add the action listeners
         twentyFive.addActionListener(this);
@@ -242,6 +262,9 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         hundredFifty.addActionListener(this);
         twoHundred.addActionListener(this);
         fiveHundred.addActionListener(this);
+        open.addActionListener(this);
+        close.addActionListener(this);
+        save.addActionListener(this);
 
         // add the menu items to the menus
         zoomMenu.add(twentyFive);
@@ -251,6 +274,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         zoomMenu.add(hundredFifty);
         zoomMenu.add(twoHundred);
         zoomMenu.add(fiveHundred);
+        fileMenu.add(open);
+        fileMenu.add(save);
+        fileMenu.add(close);
+        menuBar.add(fileMenu);
         menuBar.add(zoomMenu);
 
         // set the menu bar to this menu
@@ -302,6 +329,19 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
         if (a.getActionCommand().equals("Update")) {
             this.repaint();
+        }
+
+        if (a.getActionCommand().equals(close.getActionCommand())) { 
+            pictureFrame.dispose();
+        }
+
+        if (a.getActionCommand().equals(open.getActionCommand())) { 
+            FileChooser.showOpenDialog(pictureFrame);
+            this.picture.explore();
+        }
+
+        if (a.getActionCommand().equals(save.getActionCommand())) { 
+            FileChooser.showSaveDialog(pictureFrame, picture);
         }
 
         if (a.getActionCommand().equals(twentyFive.getActionCommand())) {
