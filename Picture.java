@@ -207,7 +207,7 @@ public class Picture extends SimplePicture {
      * makes the image more "natural"
      */
     public void fixUnderwater() {
-        //TODO:use 2 for each loops to find min and maxes b4 modding the image
+        //TODO:use 2 for each loops to find min and maxes b4 removing the teal tint on the img
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels) {
             for (Pixel pixelObj : rowArray) {
@@ -232,6 +232,23 @@ public class Picture extends SimplePicture {
         }   
     }
     
+        /**
+         * makes the image monochromatic
+         */
+        public void baW() {
+            Pixel[][] pixels = this.getPixels2D();
+            for (Pixel[] rowArray : pixels) {
+                for (Pixel pixelObj : rowArray) {
+                    if(pixelObj.getAverage()>127) {
+                        pixelObj.setColor(Color.white);
+                    }
+                    if(pixelObj.getAverage()<=127) {
+                        pixelObj.setColor(Color.black);
+                    }
+                }
+            }   
+        }
+
     /**
      * Method that mirrors the picture around a vertical mirror in the center of
      * the picture from left to right
@@ -255,6 +272,19 @@ public class Picture extends SimplePicture {
      */
     public void verticalReflection() {
         //TODO: Write this method.
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        int width = pixels[0].length;
+        for (int row = 0; row < pixels.length; row++)
+        {
+            for (int col = 0; col < width / 2; col++)
+            {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][width - 1 - col];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
     }
 
     /**
