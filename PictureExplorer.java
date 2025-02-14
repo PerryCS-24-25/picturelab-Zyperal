@@ -364,7 +364,8 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
         if (a.getActionCommand().equals(open.getActionCommand())) { 
             FileChooser.showOpenDialog(pictureFrame);
-            this.picture.explore();
+            Picture photo = FileChooser.showOpenDialog(pictureFrame);
+            photo.explore();
         }
 
         if (a.getActionCommand().equals(save.getActionCommand())) { 
