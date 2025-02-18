@@ -207,15 +207,57 @@ public class Picture extends SimplePicture {
      * makes the image more "natural"
      */
     public void fixUnderwater() {
-        //TODO:use 2 for each loops to find min and maxes b4 modding the image
         Pixel[][] pixels = this.getPixels2D();
-        for (Pixel[] rowArray : pixels) {
-            for (Pixel pixelObj : rowArray) {
-                pixelObj.setBlue((pixelObj.getBlue()-6)*86);
-                pixelObj.setRed((pixelObj.getRed()-6)*86);
-                pixelObj.setGreen((pixelObj.getGreen()-6)*86);
+        
+        // Initialize min and max values for each color channel
+        int minRed = 255, maxRed = 0;
+        int minGreen = 255, maxGreen = 0;
+        int minBlue = 255, maxBlue = 0;
+    
+        // First pass: Find the min and max values for each color channel
+        for (Pixel[] row : pixels) {
+            for (Pixel pixel : row) {
+                int red = pixel.getRed();
+                int green = pixel.getGreen();
+                int blue = pixel.getBlue();
+    
+                // Update min and max for red
+                if (red < minRed) minRed = red;
+                if (red > maxRed) maxRed = red;
+    
+                // Update min and max for green
+                if (green < minGreen) minGreen = green;
+                if (green > maxGreen) maxGreen = green;
+    
+                // Update min and max for blue
+                if (blue < minBlue) minBlue = blue;
+                if (blue > maxBlue) maxBlue = blue;
             }
-        }   
+        }
+    
+        // Second pass: Adjust each pixel's color based on the min and max values
+        for (Pixel[] row : pixels) {
+            for (Pixel pixel : row) {
+                int red = pixel.getRed();
+                int green = pixel.getGreen();
+                int blue = pixel.getBlue();
+    
+                // Normalize the color values to the range [0, 255]
+                red = (int) ((red - minRed) * 255.0 / (maxRed - minRed));
+                green = (int) ((green - minGreen) * 255.0 / (maxGreen - minGreen));
+                blue = (int) ((blue - minBlue) * 255.0 / (maxBlue - minBlue));
+    
+                // Ensure the values are within the valid range [0, 255]
+                red = Math.min(Math.max(red, 0), 255);
+                green = Math.min(Math.max(green, 0), 255);
+                blue = Math.min(Math.max(blue, 0), 255);
+    
+                // Set the new color values
+                pixel.setRed(red);
+                pixel.setGreen(green);
+                pixel.setBlue(blue);
+            }
+        }
     }
 
     /**
