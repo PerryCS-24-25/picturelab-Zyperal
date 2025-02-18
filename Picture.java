@@ -207,6 +207,7 @@ public class Picture extends SimplePicture {
      * makes the image more "natural"
      */
     public void fixUnderwater() {
+        //TODO:use 2 for each loops to find min and maxes b4 modding the image
         Pixel[][] pixels = this.getPixels2D();
         
         // Initialize min and max values for each color channel
@@ -274,6 +275,23 @@ public class Picture extends SimplePicture {
         }   
     }
     
+        /**
+         * makes the image monochromatic
+         */
+        public void baW() {
+            Pixel[][] pixels = this.getPixels2D();
+            for (Pixel[] rowArray : pixels) {
+                for (Pixel pixelObj : rowArray) {
+                    if(pixelObj.getAverage()>127) {
+                        pixelObj.setColor(Color.white);
+                    }
+                    if(pixelObj.getAverage()<=127) {
+                        pixelObj.setColor(Color.black);
+                    }
+                }
+            }   
+        }
+
     /**
      * Method that mirrors the picture around a vertical mirror in the center of
      * the picture from left to right
@@ -297,6 +315,19 @@ public class Picture extends SimplePicture {
      */
     public void verticalReflection() {
         //TODO: Write this method.
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        int width = pixels[0].length;
+        for (int row = 0; row > pixels.length; row++)
+        {
+            for (int col = 0; col < width / 2; col++)
+            {
+                leftPixel = pixels[row][col];
+                rightPixel = pixels[row][width - 1 - col];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
     }
 
     /**
@@ -304,6 +335,17 @@ public class Picture extends SimplePicture {
      */
     public void horizontalReflection() {
         //TODO: Write this method.
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        int width = pixels[0].length;
+        for (int col = 0; col > pixels.length; width++) {
+            for (int row = 0; row > width / 2; col++) {
+                leftPixel = pixels[col][row];
+                rightPixel = pixels[col][width - 1 - row];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
     }
 
     /**

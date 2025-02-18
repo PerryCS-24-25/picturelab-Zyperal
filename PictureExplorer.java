@@ -107,6 +107,10 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     /**
      * zoom menu
      */
+    private JMenu fileMenu;
+    /**
+     * file menu
+     */
     private JMenu zoomMenu;
     /**
      * 25% zoom level
@@ -137,6 +141,25 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
      */
     private JMenuItem fiveHundred;
 
+    private JMenuItem open;
+    /**
+     * 500% zoom level
+     */
+    private JMenuItem close;
+    /**
+     * 500% zoom level
+     */
+    private JMenuItem save;
+    /**
+     * 500% zoom level
+     */
+    private JMenuItem baW;
+    private JMenuItem grayscale;
+    private JMenuItem invert;
+    private JMenuItem onlyGreen;
+    private JMenuItem onlyBlue;
+    private JMenuItem onlyRed;
+    private JMenuItem filterMenu;
     /**
      * The picture being explored
      */
@@ -224,7 +247,9 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     private void setUpMenuBar() {
         //create menu
         menuBar = new JMenuBar();
+        fileMenu = new JMenu("File");
         zoomMenu = new JMenu("Zoom");
+        filterMenu = new JMenu("Filters");
         twentyFive = new JMenuItem("25%");
         fifty = new JMenuItem("50%");
         seventyFive = new JMenuItem("75%");
@@ -233,6 +258,15 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         hundredFifty = new JMenuItem("150%");
         twoHundred = new JMenuItem("200%");
         fiveHundred = new JMenuItem("500%");
+        open = new JMenuItem("Open");
+        close = new JMenuItem("Close");
+        save = new JMenuItem("Save");
+        onlyGreen = new JMenuItem("Keep Green");
+        onlyBlue = new JMenuItem("Keep Blue");
+        onlyRed = new JMenuItem("Keep Red");
+        invert = new JMenuItem("Invert");
+        grayscale = new JMenuItem("Grayscale");
+        baW = new JMenuItem("Black & White");
 
         // add the action listeners
         twentyFive.addActionListener(this);
@@ -242,6 +276,15 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         hundredFifty.addActionListener(this);
         twoHundred.addActionListener(this);
         fiveHundred.addActionListener(this);
+        open.addActionListener(this);
+        close.addActionListener(this);
+        save.addActionListener(this);
+        onlyBlue.addActionListener(this);
+        onlyGreen.addActionListener(this);
+        onlyRed.addActionListener(this);
+        invert.addActionListener(this);
+        grayscale.addActionListener(this);
+        baW.addActionListener(this);
 
         // add the menu items to the menus
         zoomMenu.add(twentyFive);
@@ -251,7 +294,18 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         zoomMenu.add(hundredFifty);
         zoomMenu.add(twoHundred);
         zoomMenu.add(fiveHundred);
+        fileMenu.add(open);
+        fileMenu.add(save);
+        fileMenu.add(close);
+        menuBar.add(fileMenu);
         menuBar.add(zoomMenu);
+        menuBar.add(filterMenu);
+        filterMenu.add(invert);
+        filterMenu.add(baW);
+        filterMenu.add(grayscale);
+        filterMenu.add(onlyBlue);
+        filterMenu.add(onlyGreen);
+        filterMenu.add(onlyRed);
 
         // set the menu bar to this menu
         pictureFrame.setJMenuBar(menuBar);
@@ -302,6 +356,56 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
 
         if (a.getActionCommand().equals("Update")) {
             this.repaint();
+        }
+
+        if (a.getActionCommand().equals(close.getActionCommand())) { 
+            pictureFrame.dispose();
+        }
+
+        if (a.getActionCommand().equals(open.getActionCommand())) { 
+            FileChooser.showOpenDialog(pictureFrame);
+            Picture photo = FileChooser.showOpenDialog(pictureFrame);
+            photo.explore();
+        }
+
+        if (a.getActionCommand().equals(save.getActionCommand())) { 
+            FileChooser.showSaveDialog(pictureFrame, this.picture);
+        }
+
+        if (a.getActionCommand().equals(onlyBlue.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.keepOnlyBlue();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(onlyGreen.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.keepOnlyGreen();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(onlyRed.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.keepOnlyRed();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(invert.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.negate();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(baW.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.baW();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(grayscale.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.grayscale();
+            newPic.explore();
         }
 
         if (a.getActionCommand().equals(twentyFive.getActionCommand())) {

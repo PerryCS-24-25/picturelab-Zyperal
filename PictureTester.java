@@ -128,6 +128,13 @@ public class PictureTester {
         sg.explore();
     }
 
+    public static void testHorizontalReflection() {
+        Picture sg = new Picture("seagull.jpg");
+        sg.explore();
+        sg.grayscale();
+        sg.explore();
+    }
+
     /**
      * Main method for testing. Every class can have a main method in Java
      */
