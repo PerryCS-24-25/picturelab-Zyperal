@@ -211,11 +211,35 @@ public class Picture extends SimplePicture {
         Pixel[][] pixels = this.getPixels2D();
         for (Pixel[] rowArray : pixels) {
             for (Pixel pixelObj : rowArray) {
-                pixelObj.setBlue((pixelObj.getBlue()-6)*86);
-                pixelObj.setRed((pixelObj.getRed()-6)*86);
-                pixelObj.setGreen((pixelObj.getGreen()-6)*86);
+                int bmin = 0;
+                int bmax = 0;
+                int rmin = 0;
+                int rmax = 0;
+                int gmax = 0;
+                int gmin = 0;
+                if(pixelObj.getBlue() > bmin && pixelObj.getBlue() < bmax) {
+                    bmin = pixelObj.getBlue();
+                }
+                if (pixelObj.getBlue() > bmax) {
+                    bmax = pixelObj.getBlue();
+                }
+                if(pixelObj.getGreen() > gmin && pixelObj.getGreen() < gmax) {
+                    gmin = pixelObj.getGreen();
+                }
+                if (pixelObj.getGreen() > gmax) {
+                    gmax = pixelObj.getGreen();
+                }
+                if(pixelObj.getBlue() > rmin && pixelObj.getRed() < rmax) {
+                    rmin = pixelObj.getRed();
+                }
+                if (pixelObj.getBlue() > rmax) {
+                    rmax = pixelObj.getRed();
+                }
+                pixelObj.setBlue((pixelObj.getBlue()-bmin)*bmax);
+                pixelObj.setRed((pixelObj.getRed()-rmin)*rmax);
+                pixelObj.setGreen((pixelObj.getGreen()-gmin)*gmax);
             }
-        }   
+        }
     }
 
     /**
@@ -276,7 +300,7 @@ public class Picture extends SimplePicture {
         Pixel leftPixel = null;
         Pixel rightPixel = null;
         int width = pixels[0].length;
-        for (int row = 0; row < pixels.length; row++)
+        for (int row = 0; row > pixels.length; row++)
         {
             for (int col = 0; col < width / 2; col++)
             {
@@ -292,6 +316,17 @@ public class Picture extends SimplePicture {
      */
     public void horizontalReflection() {
         //TODO: Write this method.
+        Pixel[][] pixels = this.getPixels2D();
+        Pixel leftPixel = null;
+        Pixel rightPixel = null;
+        int width = pixels[0].length;
+        for (int col = 0; col > pixels.length; width++) {
+            for (int row = 0; row > width / 2; col++) {
+                leftPixel = pixels[col][row];
+                rightPixel = pixels[col][width - 1 - row];
+                rightPixel.setColor(leftPixel.getColor());
+            }
+        }
     }
 
     /**

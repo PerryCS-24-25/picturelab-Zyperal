@@ -118,10 +118,17 @@ public class PictureTester {
         g.explore();
     }
     
-/**
+    /**
      * Method to test negate
      */
     public static void testGrayscale() {
+        Picture sg = new Picture("seagull.jpg");
+        sg.explore();
+        sg.grayscale();
+        sg.explore();
+    }
+
+    public static void testHorizontalReflection() {
         Picture sg = new Picture("seagull.jpg");
         sg.explore();
         sg.grayscale();
@@ -144,8 +151,8 @@ public class PictureTester {
         //testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
-        //testFixUnderwater();
-        testMirrorVertical();
+        testFixUnderwater();
+        //testMirrorVertical();
         //testMirrorTemple();
         //testMirrorArms();
         //testMirrorGull();
