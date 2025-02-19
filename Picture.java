@@ -207,37 +207,55 @@ public class Picture extends SimplePicture {
      * makes the image more "natural"
      */
     public void fixUnderwater() {
-        //TODO:use 2 for each loops to find min and maxes b4 removing the teal tint on the img
         Pixel[][] pixels = this.getPixels2D();
-        for (Pixel[] rowArray : pixels) {
-            for (Pixel pixelObj : rowArray) {
-                int bmin = 0;
-                int bmax = 0;
-                int rmin = 0;
-                int rmax = 0;
-                int gmax = 0;
-                int gmin = 0;
-                if(pixelObj.getBlue() > bmin && pixelObj.getBlue() < bmax) {
-                    bmin = pixelObj.getBlue();
-                }
-                if (pixelObj.getBlue() > bmax) {
-                    bmax = pixelObj.getBlue();
-                }
-                if(pixelObj.getGreen() > gmin && pixelObj.getGreen() < gmax) {
-                    gmin = pixelObj.getGreen();
-                }
-                if (pixelObj.getGreen() > gmax) {
-                    gmax = pixelObj.getGreen();
-                }
-                if(pixelObj.getBlue() > rmin && pixelObj.getRed() < rmax) {
-                    rmin = pixelObj.getRed();
-                }
-                if (pixelObj.getBlue() > rmax) {
-                    rmax = pixelObj.getRed();
-                }
-                pixelObj.setBlue((pixelObj.getBlue()-bmin)*bmax);
-                pixelObj.setRed((pixelObj.getRed()-rmin)*rmax);
-                pixelObj.setGreen((pixelObj.getGreen()-gmin)*gmax);
+        
+        // Initialize min and max values for each color channel
+        int minRed = 255, maxRed = 0;
+        int minGreen = 255, maxGreen = 0;
+        int minBlue = 255, maxBlue = 0;
+    
+        // First pass: Find the min and max values for each color channel
+        for (Pixel[] row : pixels) {
+            for (Pixel pixel : row) {
+                int red = pixel.getRed();
+                int green = pixel.getGreen();
+                int blue = pixel.getBlue();
+    
+                // Update min and max for red
+                if (red < minRed) minRed = red;
+                if (red > maxRed) maxRed = red;
+    
+                // Update min and max for green
+                if (green < minGreen) minGreen = green;
+                if (green > maxGreen) maxGreen = green;
+    
+                // Update min and max for blue
+                if (blue < minBlue) minBlue = blue;
+                if (blue > maxBlue) maxBlue = blue;
+            }
+        }
+    
+        // Second pass: Adjust each pixel's color based on the min and max values
+        for (Pixel[] row : pixels) {
+            for (Pixel pixel : row) {
+                int red = pixel.getRed();
+                int green = pixel.getGreen();
+                int blue = pixel.getBlue();
+    
+                // Normalize the color values to the range [0, 255]
+                red = (int) ((red - minRed) * 255.0 / (maxRed - minRed));
+                green = (int) ((green - minGreen) * 255.0 / (maxGreen - minGreen));
+                blue = (int) ((blue - minBlue) * 255.0 / (maxBlue - minBlue));
+    
+                // Ensure the values are within the valid range [0, 255]
+                red = Math.min(Math.max(red, 0), 255);
+                green = Math.min(Math.max(green, 0), 255);
+                blue = Math.min(Math.max(blue, 0), 255);
+    
+                // Set the new color values
+                pixel.setRed(red);
+                pixel.setGreen(green);
+                pixel.setBlue(blue);
             }
         }
     }
@@ -295,18 +313,14 @@ public class Picture extends SimplePicture {
      *  Creates a vertical mirror image of the this picture.
      */
     public void verticalReflection() {
-        //TODO: Write this method.
         Pixel[][] pixels = this.getPixels2D();
-        Pixel leftPixel = null;
-        Pixel rightPixel = null;
         int width = pixels[0].length;
-        for (int row = 0; row > pixels.length; row++)
-        {
-            for (int col = 0; col < width / 2; col++)
-            {
-                leftPixel = pixels[row][col];
-                rightPixel = pixels[row][width - 1 - col];
-                rightPixel.setColor(leftPixel.getColor());
+        for (int row = 0; row < pixels.length; row++) {
+            for (int col = 0; col < width / 2; col++) {
+                // Copy pixel from the right to the left
+                Pixel leftPixel = pixels[row][col];
+                Pixel rightPixel = pixels[row][width - 1 - col];
+                leftPixel.setColor(rightPixel.getColor());
             }
         }
     }
@@ -314,17 +328,15 @@ public class Picture extends SimplePicture {
     /**
      * Converts this image into a horizontal mirror image of itself.
      */
-    public void horizontalReflection() {
-        //TODO: Write this method.
+    public void mirrorHorizontal() {
         Pixel[][] pixels = this.getPixels2D();
-        Pixel leftPixel = null;
-        Pixel rightPixel = null;
-        int width = pixels[0].length;
-        for (int col = 0; col > pixels.length; width++) {
-            for (int row = 0; row > width / 2; col++) {
-                leftPixel = pixels[col][row];
-                rightPixel = pixels[col][width - 1 - row];
-                rightPixel.setColor(leftPixel.getColor());
+        int height = pixels.length;
+        for (int row = 0; row < height / 2; row++) {
+            for (int col = 0; col < pixels[row].length; col++) {
+                // Copy pixel from the top to the bottom
+                Pixel topPixel = pixels[row][col];
+                Pixel bottomPixel = pixels[height - 1 - row][col];
+                bottomPixel.setColor(topPixel.getColor());
             }
         }
     }

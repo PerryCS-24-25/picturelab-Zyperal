@@ -160,6 +160,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     private JMenuItem onlyBlue;
     private JMenuItem onlyRed;
     private JMenuItem filterMenu;
+    private JMenuItem underwaterfix;
     /**
      * The picture being explored
      */
@@ -267,6 +268,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         invert = new JMenuItem("Invert");
         grayscale = new JMenuItem("Grayscale");
         baW = new JMenuItem("Black & White");
+        underwaterfix = new JMenuItem("Fix Underwater");
 
         // add the action listeners
         twentyFive.addActionListener(this);
@@ -285,6 +287,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         invert.addActionListener(this);
         grayscale.addActionListener(this);
         baW.addActionListener(this);
+        underwaterfix.addActionListener(this);
 
         // add the menu items to the menus
         zoomMenu.add(twentyFive);
@@ -306,6 +309,7 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         filterMenu.add(onlyBlue);
         filterMenu.add(onlyGreen);
         filterMenu.add(onlyRed);
+        filterMenu.add(underwaterfix);
 
         // set the menu bar to this menu
         pictureFrame.setJMenuBar(menuBar);
@@ -377,6 +381,13 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
             newPic.keepOnlyBlue();
             newPic.explore();
         }
+
+        if (a.getActionCommand().equals(underwaterfix.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.fixUnderwater();
+            newPic.explore();
+        }
+
 
         if (a.getActionCommand().equals(onlyGreen.getActionCommand())) { 
             Picture newPic = new Picture((SimplePicture)picture);
