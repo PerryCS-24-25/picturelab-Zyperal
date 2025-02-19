@@ -161,6 +161,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
     private JMenuItem onlyRed;
     private JMenuItem filterMenu;
     private JMenuItem underwaterfix;
+    private JMenuItem fixunderwater;
+    private JMenuItem mirrorVerticalt2b;
+    private JMenuItem mirrorHorizontall2r;
+    private JMenuItem mirrorHorizontalr2l;
+    private JMenuItem mirrorVerticalb2t;
     /**
      * The picture being explored
      */
@@ -269,7 +274,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         grayscale = new JMenuItem("Grayscale");
         baW = new JMenuItem("Black & White");
         underwaterfix = new JMenuItem("Fix Underwater");
-
+        fixunderwater = new JMenuItem("remove water");
+        mirrorVerticalt2b = new JMenuItem("Mirror top to bottom");
+        mirrorHorizontall2r = new JMenuItem("Mirror left to right");
+        mirrorHorizontalr2l = new JMenuItem("Mirror right to left");
+        mirrorVerticalb2t = new JMenuItem("Mirror bottom to top");
         // add the action listeners
         twentyFive.addActionListener(this);
         fifty.addActionListener(this);
@@ -287,8 +296,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         invert.addActionListener(this);
         grayscale.addActionListener(this);
         baW.addActionListener(this);
-        underwaterfix.addActionListener(this);
-
+        fixunderwater.addActionListener(this);
+        mirrorHorizontall2r.addActionListener(this);
+        mirrorHorizontalr2l.addActionListener(this);
+        mirrorVerticalt2b.addActionListener(this);
+        mirrorVerticalb2t.addActionListener(this);
         // add the menu items to the menus
         zoomMenu.add(twentyFive);
         zoomMenu.add(fifty);
@@ -310,7 +322,11 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         filterMenu.add(onlyGreen);
         filterMenu.add(onlyRed);
         filterMenu.add(underwaterfix);
-
+        filterMenu.add(fixunderwater);
+        filterMenu.add(mirrorHorizontall2r);
+        filterMenu.add(mirrorHorizontalr2l);
+        filterMenu.add(mirrorVerticalt2b);
+        filterMenu.add(mirrorVerticalb2t);
         // set the menu bar to this menu
         pictureFrame.setJMenuBar(menuBar);
     }
@@ -389,6 +405,12 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         }
 
 
+        if (a.getActionCommand().equals(fixunderwater.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.fixUnderwater();
+            newPic.explore();
+        }
+
         if (a.getActionCommand().equals(onlyGreen.getActionCommand())) { 
             Picture newPic = new Picture((SimplePicture)picture);
             newPic.keepOnlyGreen();
@@ -410,6 +432,12 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
         if (a.getActionCommand().equals(baW.getActionCommand())) { 
             Picture newPic = new Picture((SimplePicture)picture);
             newPic.baW();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(mirrorHorizontall2r.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.mirrorHorizontal();
             newPic.explore();
         }
 
