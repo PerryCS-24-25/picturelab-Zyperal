@@ -341,6 +341,19 @@ public class Picture extends SimplePicture {
         }
     }
 
+    public void mirrorHorizontalb2t() {
+        Pixel[][] pixels = this.getPixels2D();
+        int height = pixels.length;
+        for (int row = 0; row < height / 2; row++) {
+            for (int col = 0; col < pixels[row].length; col++) {
+                // Copy pixel from the top to the bottom
+                Pixel topPixel = pixels[row][col];
+                Pixel bottomPixel = pixels[height - 1 - row][col];
+                topPixel.setColor(bottomPixel.getColor());
+            }
+        }
+    }
+
     /**
      * Mirror just part of a picture of a temple
      */

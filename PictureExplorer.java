@@ -435,11 +435,30 @@ public class PictureExplorer implements MouseMotionListener, ActionListener, Mou
             newPic.explore();
         }
 
-        if (a.getActionCommand().equals(mirrorHorizontall2r.getActionCommand())) { 
+        if (a.getActionCommand().equals(mirrorVerticalt2b.getActionCommand())) { 
             Picture newPic = new Picture((SimplePicture)picture);
             newPic.mirrorHorizontal();
             newPic.explore();
         }
+
+        if (a.getActionCommand().equals(mirrorHorizontall2r.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.mirrorVertical();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(mirrorHorizontalr2l.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.verticalReflection();
+            newPic.explore();
+        }
+
+        if (a.getActionCommand().equals(mirrorVerticalb2t.getActionCommand())) { 
+            Picture newPic = new Picture((SimplePicture)picture);
+            newPic.mirrorHorizontalb2t();
+            newPic.explore();
+        }
+
 
         if (a.getActionCommand().equals(grayscale.getActionCommand())) { 
             Picture newPic = new Picture((SimplePicture)picture);
