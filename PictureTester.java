@@ -135,7 +135,13 @@ public class PictureTester {
         sg.explore();
     }
 
-    /** Test method for mirrorArms */
+    public static void testMirrorDiagonal() {
+        Picture beach = new Picture("beach.jpg");
+        beach.explore(); // Show the original image
+        beach.mirrorDiagonal(); // Mirror the image diagonally
+        beach.explore(); // Show the mirrored image
+    }
+
     public static void testMirrorArms() {
         Picture snowman = new Picture("snowman.jpg");
         snowman.explore(); // Show the original image
@@ -143,14 +149,12 @@ public class PictureTester {
         snowman.explore(); // Show the mirrored image
     }
 
-    /** Test method for mirrorGull */
     public static void testMirrorGull() {
         Picture seagull = new Picture("seagull.jpg");
         seagull.explore(); // Show the original image
         seagull.mirrorGull(); // Mirror the seagull
         seagull.explore(); // Show the mirrored image
     }
-    
     /**
      * Main method for testing. Every class can have a main method in Java
      */

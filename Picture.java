@@ -189,6 +189,22 @@ public class Picture extends SimplePicture {
         }   
     }
 
+    public void mirrorDiagonal() {
+    Pixel[][] pixels = this.getPixels2D();
+    int size = Math.min(pixels.length, pixels[0].length); // Use the smaller dimension to avoid out-of-bounds errors
+
+    for (int row = 0; row < size; row++) {
+        for (int col = row + 1; col < size; col++) {
+            // Swap pixels across the diagonal
+            Pixel pixel1 = pixels[row][col];
+            Pixel pixel2 = pixels[col][row];
+            Color temp = pixel1.getColor(); // Store the color temporarily
+            pixel1.setColor(pixel2.getColor());
+            pixel2.setColor(temp);
+        }
+    }
+}
+
     /**
      * negates every pixel in this image.
      */
@@ -358,23 +374,20 @@ public class Picture extends SimplePicture {
      * Mirror just part of a picture of a temple
      */
     public void mirrorTemple() {
-        Pixel[][] pixels = this.getPixels2D();
-        int count = 0; // Counter for loop executions
-        int mirrorPoint = 276; // Column to mirror around
-        for (int row = 27; row < 97; row++) {
-            for (int col = 13; col < mirrorPoint; col++) {
-                count++; // Increment counter
-                Pixel leftPixel = pixels[row][col];
-                Pixel rightPixel = pixels[row][mirrorPoint + (mirrorPoint - col)];
-                rightPixel.setColor(leftPixel.getColor());
+    Pixel[][] pixels = this.getPixels2D();
+    int count = 0; // Counter for loop executions
+    int mirrorPoint = 276; // Column to mirror around
+    for (int row = 27; row < 97; row++) {
+        for (int col = 13; col < mirrorPoint; col++) {
+            count++; // Increment counter
+            Pixel leftPixel = pixels[row][col];
+            Pixel rightPixel = pixels[row][mirrorPoint + (mirrorPoint - col)];
+            rightPixel.setColor(leftPixel.getColor());
             }
         }
-        System.out.println("Number of loop executions: " + count); // Print the count
+    System.out.println("Number of loop executions: " + count); // Print the count
     }
 
-    /**
-     * Mirror just part of a picture of a snowman
-     */
     public void mirrorArms() {
         Pixel[][] pixels = this.getPixels2D();
         int mirrorPoint = 193; // Row to mirror around
@@ -389,23 +402,20 @@ public class Picture extends SimplePicture {
         }
     }
 
-
-    /**
-     * Mirror just part of a picture of a seagull
-     */
     public void mirrorGull() {
-        Pixel[][] pixels = this.getPixels2D();
-        int mirrorPoint = 350; // Column to mirror around
-    
-        // Mirror left side of the seagull to the right side
-        for (int row = 230; row < 330; row++) {
-            for (int col = 230; col < mirrorPoint; col++) {
-                Pixel leftPixel = pixels[row][col];
-                Pixel rightPixel = pixels[row][mirrorPoint + (mirrorPoint - col)];
-                rightPixel.setColor(leftPixel.getColor());
-            }   
+    Pixel[][] pixels = this.getPixels2D();
+    int mirrorPoint = 350; // Column to mirror around
+
+    // Mirror the seagull to the right
+    for (int row = 235; row < 320; row++) {
+        for (int col = 235; col < mirrorPoint; col++) {
+            Pixel leftPixel = pixels[row][col];
+            Pixel rightPixel = pixels[row][mirrorPoint + (mirrorPoint - col)];
+            rightPixel.setColor(leftPixel.getColor());
+            }
         }
     }
+
     /**
      * copy from the passed fromPic to the specified startRow and startCol in the
      * current picture
