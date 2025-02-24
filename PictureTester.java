@@ -135,6 +135,34 @@ public class PictureTester {
         sg.explore();
     }
 
+    public static void testMirrorDiagonal() {
+        Picture beach = new Picture("beach.jpg");
+        beach.explore(); // Show the original image
+        beach.mirrorDiagonal(); // Mirror the image diagonally
+        beach.explore(); // Show the mirrored image
+    }
+
+    public static void testMirrorTemple() {
+        Picture temple = new Picture("temple.jpg");
+        temple.explore(); // Show the original image
+        temple.mirrorTemple(); // Mirror the temple
+        temple.explore(); // Show the mirrored image
+    }
+
+    public static void testMirrorArms() {
+        Picture snowman = new Picture("snowman.jpg");
+        snowman.explore(); // Show the original image
+        snowman.mirrorArms(); // Mirror the arms
+        snowman.explore(); // Show the mirrored image
+    }
+
+    public static void testMirrorGull() {
+        Picture seagull = new Picture("seagull.jpg");
+        seagull.explore(); // Show the original image
+        seagull.mirrorGull(); // Mirror the seagull
+        seagull.explore(); // Show the mirrored image
+    }
+
     /**
      * Main method for testing. Every class can have a main method in Java
      */
@@ -151,7 +179,11 @@ public class PictureTester {
         //testKeepOnlyGreen();
         //testNegate();
         //testGrayscale();
-        testFixUnderwater();
+        //testFixUnderwater();
+        testMirrorDiagonal();
+        testMirrorTemple();
+        testMirrorArms();
+        testMirrorGull();
         //testMirrorVertical();
         //testMirrorTemple();
         //testMirrorArms();
